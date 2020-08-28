@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Hello World</h1>
-
+<h1>Please login to view your RSS feed</h1>
+<form enctype="multipart/form-data" method = 'POST'> {% csrf_token %}
+    <div class = "form-group">
+        {{ form.as_p }}
+        <input class="btn btn-primary" type ='submit' value="Login"/>
+    </div>
+</form>
+<p>Need an account? Register <a href="../user/signup/">here</a></p>
 {% endblock content %}
