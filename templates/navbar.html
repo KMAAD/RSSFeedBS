@@ -1,27 +1,99 @@
 {% if request.user.is_authenticated %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Backstitch.io RSS Feed</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item ">
-        <a class="nav-link" href="http://localhost:8000">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Add a Feed</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="http://localhost:8000/document/create">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="http://localhost:8000/document/create" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
-      <li class="align-right">
-        <a class="nav-link" href="/user/logout/">Sign Out</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+<div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Backstitch.io RSS Feed</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <p>Feeds and Content</p>
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Saved Blogs</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="#">Saved Post 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Saved Post 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Saved Post 3</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">RSS Feeds</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="#">feed 1</a>
+                        </li>
+                        <li>
+                            <a href="#">feed 2</a>
+                        </li>
+                        <li>
+                            <a href="#">feed 3</a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        <div class="center">
+        </div>
+            <h6>Add a New Feed</h6>
+            <form enctype="multipart/form-data" method = 'POST'> {% csrf_token %}
+
+                    {{ form.as_p }}
+
+                    <input class="btn btn-primary" type ='submit' value="Save"/>
+
+            </form>
+        </nav>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/user/userhome/">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="align-right">
+                                <a class="nav-link" href="/logout/">Sign Out</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
+    </script>
 {% endif %}

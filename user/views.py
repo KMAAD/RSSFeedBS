@@ -27,7 +27,7 @@ def user_login_view(request):
 # Using built in Django authentication
 def user_signup_view(request):
     if request.user.is_authenticated:
-        return redirect('home/')
+        return redirect('/user/userhome/')
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -36,7 +36,7 @@ def user_signup_view(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('/home/')
+            return redirect('user/userhome/')
         else:
             return render(request, 'user/signup.html', {'form': form})
     else:
@@ -49,8 +49,3 @@ def user_signout(request):
     return redirect('/home/')
 
 
-def user_home_view(request):
-    context = {
-        'test': 1
-    }
-    return render(request, 'user/userhome.html', context)

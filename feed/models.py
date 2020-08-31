@@ -5,4 +5,4 @@ from django.db import models
 class Feed(models.Model):
     title = models.CharField(max_length=20)
     link = models.URLField(max_length=200)
-    userId = models.IntegerField(max_length=11)
+    userId = models.IntegerField()
