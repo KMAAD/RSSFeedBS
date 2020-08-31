@@ -14,7 +14,7 @@ p {
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
-    color: #999;
+    color: #000;
 }
 
 a, a:hover, a:focus {
@@ -120,22 +120,7 @@ ul ul a {
     background: #6d7fcc;
 }
 
-ul.CTAs {
-    padding: 20px;
-}
 
-ul.CTAs a {
-    text-align: center;
-    font-size: 0.9em !important;
-    display: block;
-    border-radius: 5px;
-    margin-bottom: 5px;
-}
-
-a.download {
-    background: #fff;
-    color: #7386D5;
-}
 
 a.article, a.article:hover {
     background: #6d7fcc !important;
@@ -186,6 +171,11 @@ a.article, a.article:hover {
     transform: none;
     opacity: 1;
     margin: 5px auto;
+}
+
+.sidebarForm {
+width: 80%;
+height: 20%;
 }
 
 

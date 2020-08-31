@@ -7,7 +7,7 @@
             </div>
 
             <ul class="list-unstyled components">
-                <p>Feeds and Content</p>
+                <p><u>Feeds and Content</u></p>
                 <li class="active">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Saved Blogs</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
@@ -26,6 +26,12 @@
 
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">RSS Feeds</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
+                        {% for i in feeds %}
+                        <li>
+                            <a>{{ i.title }}</a>
+                        </li>
+                        {% endfor %}
+
                         <li>
                             <a href="#">feed 1</a>
                         </li>
@@ -41,10 +47,11 @@
             </ul>
         <div class="center">
         </div>
+
             <h6>Add a New Feed</h6>
             <form enctype="multipart/form-data" method = 'POST'> {% csrf_token %}
 
-                    {{ form.as_p }}
+                    {{ form.as_ul }}
 
                     <input class="btn btn-primary" type ='submit' value="Save"/>
 

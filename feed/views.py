@@ -4,8 +4,9 @@ from .models import Feed
 # Create your views here.
 
 
-# This is where the users RSS Feeds list are rendered
+# This is where the user's RSS Feed information is rendered
 def feed_home_view(request):
+    feeds = Feed.objects.filter(userId = request.user.id)
     form = NewFeedForm(initial={"userId": request.user.id})
     if request.method == "POST":
         form = NewFeedForm(request.POST)
@@ -17,6 +18,6 @@ def feed_home_view(request):
             print(form.errors)
     context = {
         "form": form,
-        "userid": request.user.id
+        "feeds": feeds
     }
     return render(request, 'user/userhome.html', context)
