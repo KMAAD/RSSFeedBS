@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>hi</p>
+{{ path }}
+<br>
+<p>{{ url }}</p>
+
+{% for i in parser.entries %}
+<div>
+    {{ i.title  }}
+    {{ i.description | striptags }}
+    {{ i.published }}<br>
+    <img src="{{i.image.href}}"/>
+</div>
+
+
+{% endfor %}
+{% endblock content %}
