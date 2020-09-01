@@ -7,13 +7,15 @@
 <p>{{ url }}</p>
 
 {% for i in parser.entries %}
-<div>
-    {{ i.title  }}
-    {{ i.description | striptags }}
-    {{ i.published }}<br>
-    <img src="{{i.image.href}}"/>
-</div>
 
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">{{ i.title  }}</h4>
+      <img class="card-img-top" src="{{i.image.href}}" alt="Card image" style="width:25%">
+    <p class="card-text">{{ i.description | striptags }}</p>
+    <p class="card-text">{{ i.published | striptags }}</p>
+  </div>
+</div>
 
 {% endfor %}
 {% endblock content %}
