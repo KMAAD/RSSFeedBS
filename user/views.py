@@ -15,7 +15,7 @@ def user_login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('../user/userhome/')
+            return redirect('/user/userhome/')
         else:
             form = AuthenticationForm(request.POST)
             return render(request, 'home.html', {'form': form})
@@ -36,7 +36,7 @@ def user_signup_view(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('user/userhome/')
+            return redirect('/user/userhome/')
         else:
             return render(request, 'user/signup.html', {'form': form})
     else:

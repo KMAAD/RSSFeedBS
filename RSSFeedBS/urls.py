@@ -16,18 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from user.views import user_login_view, user_signup_view, user_signout
-from feed.views import feed_home_view,RSS_URL_View
+from feed.views import feed_home_view,RSS_URL_View, feed_delete_view
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',user_login_view),
+    path('', user_login_view),
     path('home/', user_login_view),
     path('logout/', user_signout),
     path('user/signup/', user_signup_view),
     path('user/userhome/', feed_home_view),
-    path('user/userhome/rss/<int:id>/<str:orderby>',RSS_URL_View)
+    path('user/userhome/rss/<int:id>/<str:orderby>',RSS_URL_View),
+    path('rss/<int:id>/delete', feed_delete_view)
 
 
 ]
