@@ -12,14 +12,9 @@
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Saved Blogs</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="#">Saved Post 1</a>
+                            <a href="#">This Feature is Coming Soon!</a>
                         </li>
-                        <li>
-                            <a href="#">Saved Post 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Saved Post 3</a>
-                        </li>
+
                     </ul>
                 </li>
                 <li>
@@ -27,9 +22,9 @@
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">RSS Feeds</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         {% for i in feeds %}
-                        <li>
-                            <a href="/user/userhome/rss/{{ i.id }}/published_date">{{ i.title }}</a>
-                            <a  class="btn btn-danger"href="/rss/{{ i.id }}/delete">Delete</a>
+                        <li style="display:inline">
+                            <a style="width: 50%; float:left" href="/user/userhome/rss/{{ i.id }}/published_date">{{ i.title }}</a>
+                            <a  style="width: 50%;float:right" class="btn btn-danger" href="/rss/{{ i.id }}/delete">Delete</a>
                         </li>
                         {% endfor %}
 

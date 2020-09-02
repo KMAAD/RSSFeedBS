@@ -2,7 +2,7 @@
     DEMO STYLE
 */
 @import "https://fonts.googleapis.com/css?family=Lobster:300,400,500,600,700";
-
+@import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700";
 
 body {
     font-family: 'Lobster', sans-serif;
@@ -10,7 +10,7 @@ body {
 }
 
 p {
-    font-family: 'Lobster', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
