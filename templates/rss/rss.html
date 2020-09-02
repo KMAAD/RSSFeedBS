@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<p>hi</p>
-{{ path }}
-<br>
+<style>
+  .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #8064a2 !important;
+}
+</style>
 <p>{{ url }}</p>
 <p>{{ error }}</p>
-
-{% for i in parser.entries %}
+<div>
+  <a class="btn btn-primary" href="/user/userhome/rss/{{ linkid }}/published_date">Sort By Date</a>
+  <a class="btn btn-primary" href="/user/userhome/rss/{{ linkid }}/title">Sort By Title</a>
+  <a class="btn btn-primary" href="/user/userhome/rss/{{ linkid }}/description">Sort By Description</a>
+</div>
+{% for i in parser %}
 
 <div class="card">
   <div class="card-body">

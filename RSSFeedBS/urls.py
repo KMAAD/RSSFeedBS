@@ -22,6 +22,7 @@ from feed.views import feed_home_view,RSS_URL_View
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',user_login_view),
     path('home/', user_login_view),
     path('logout/', user_signout),
     path('user/signup/', user_signup_view),

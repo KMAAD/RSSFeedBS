@@ -30,6 +30,7 @@ def feed_home_view(request):
 def RSS_URL_View(request, id, orderby):
     feeds = Feed.objects.filter(userId=request.user.id)
     form = NewFeedForm(initial={"userId": request.user.id})
+    error = ''
     if request.method == "POST":
         form = NewFeedForm(request.POST)
         if form.is_valid():
@@ -38,13 +39,22 @@ def RSS_URL_View(request, id, orderby):
             return redirect('/user/userhome/')
         else:
             print(form.errors)
+# Parses the RSS Feed
     rss_url = Feed.objects.values("link").get(id=id)
     rss_url = rss_url["link"]
     parser = feedparser.parse(rss_url)
-    error = ''
 # Checks if feed is valid
     if parser.bozo == 1:
         error = 'There are no items in this feed. Please make sure the feed link is correct'
+# Sorting the RSS Feed
+    if orderby == 'published_date':
+        parser = sorted(parser.entries, key = lambda i: i['published'])
+    elif orderby == 'title':
+        parser = sorted(parser.entries, key=lambda i: i['title'])
+    elif orderby == 'description':
+        parser = sorted(parser.entries, key=lambda i: i['description'])
+
+
     context = {
         "user": request.user.id,
         "path": request.path,
