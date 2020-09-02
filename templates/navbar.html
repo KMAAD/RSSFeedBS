@@ -23,7 +23,7 @@
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         {% for i in feeds %}
                         <li style="display:inline">
-                            <a style="width: 50%; float:left" href="/user/userhome/rss/{{ i.id }}/published_date">{{ i.title }}</a>
+                            <a style="width: 50%; float:left" href="/user/userhome/rss/{{ i.id }}/none">{{ i.title }}</a>
                             <a  style="width: 50%;float:right" class="btn btn-danger" href="/rss/{{ i.id }}/delete">Delete</a>
                         </li>
                         {% endfor %}

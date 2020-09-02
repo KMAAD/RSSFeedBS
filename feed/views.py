@@ -50,23 +50,38 @@ def RSS_URL_View(request, id, orderby):
     if parser.bozo == 1:
         error = 'There are no items in this feed. Please make sure the feed link is correct'
     # Sorting the RSS Feed
-    if orderby == 'published_date':
-        parser = sorted(parser.entries, key=lambda i: i['published'])
-    elif orderby == 'title':
+    try:
+        if orderby == 'published_date':
+            parser = sorted(parser.entries, key=lambda i: i['published'])
+        elif orderby == 'title':
+            parser = sorted(parser.entries, key=lambda i: i['title'])
+        elif orderby == 'description':
+            parser = sorted(parser.entries, key=lambda i: i['description'])
+        elif orderby == 'none':
+            parser = sorted(parser.entries, key=lambda i: i['title'])
+        context = {
+                "user": request.user.id,
+                "path": request.path,
+                "feeds": feeds,
+                "form": form,
+                "url": rss_url,
+                "parser": parser,
+                "linkid": id,
+                "error": error
+            }
+    #In case of malformed RSS Fall back to sorting by title
+    except KeyError:
         parser = sorted(parser.entries, key=lambda i: i['title'])
-    elif orderby == 'description':
-        parser = sorted(parser.entries, key=lambda i: i['description'])
-
-    context = {
-        "user": request.user.id,
-        "path": request.path,
-        "feeds": feeds,
-        "form": form,
-        "url": rss_url,
-        "parser": parser,
-        "linkid": id,
-        "error": error
-    }
+        context={
+            "user": request.user.id,
+            "path": request.path,
+            "feeds": feeds,
+            "form": form,
+            "url": rss_url,
+            "parser": parser,
+            "linkid": id,
+            "error": error
+        }
     return render(request, "rss/rss.html", context)
 
 
