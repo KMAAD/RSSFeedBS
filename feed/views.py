@@ -26,7 +26,7 @@ def feed_home_view(request):
     return render(request, 'user/userhome.html', context)
 
 
-# Renders the desired RSS Feed
+# Renders the desired RSS Feed and ordering
 def RSS_URL_View(request, id, orderby):
     feeds = Feed.objects.filter(userId=request.user.id)
     form = NewFeedForm(initial={"userId": request.user.id})
@@ -41,12 +41,18 @@ def RSS_URL_View(request, id, orderby):
     rss_url = Feed.objects.values("link").get(id=id)
     rss_url = rss_url["link"]
     parser = feedparser.parse(rss_url)
+    error = ''
+# Checks if feed is valid
+    if parser.bozo == 1:
+        error = 'There are no items in this feed. Please make sure the feed link is correct'
     context = {
         "user": request.user.id,
         "path": request.path,
         "feeds": feeds,
         "form": form,
         "url": rss_url,
-        "parser": parser
+        "parser": parser,
+        "linkid": id,
+        "error": error
     }
     return render(request, "rss/rss.html", context)

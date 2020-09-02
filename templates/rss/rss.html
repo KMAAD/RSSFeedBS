@@ -5,15 +5,17 @@
 {{ path }}
 <br>
 <p>{{ url }}</p>
+<p>{{ error }}</p>
 
 {% for i in parser.entries %}
 
 <div class="card">
   <div class="card-body">
-    <h4 class="card-title">{{ i.title  }}</h4>
-      <img class="card-img-top" src="{{i.image.href}}" alt="Card image" style="width:25%">
+    <h4 class="card-title"><a href="{{ i.link }}">{{ i.title  }}</a></h4>
+      <img class="card-img-top" src="{{i.image.href}}" alt="Card image" onerror="this.onerror=null;this.src='https://pbs.twimg.com/profile_images/941692867843522560/Fv1Mkg5V_400x400.jpg'" style="width:25%"/>
     <p class="card-text">{{ i.description | striptags }}</p>
     <p class="card-text">{{ i.published | striptags }}</p>
+<!--      <a href="{{ i.link }}" class="stretched-link"></a>-->
   </div>
 </div>
 
